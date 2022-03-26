@@ -1,21 +1,32 @@
 import React from 'react';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import StaffList from './StaffListComponent';
+import StaffList from './StaffListComponents';
 import Staff from './StaffComponent';
 import Department from './Departments';
 import Salary from './SalaryComponent';
 import { Routes, Route, useParams } from 'react-router-dom';
-import { STAFFS, DEPARTMENTS } from '../Shared/staffs';
+// import { STAFFS, DEPARTMENTS } from '../Shared/staffs';
+import { connect} from 'react-redux';
+
+const mapStateToProps = state => {
+  return {
+    staffs: state.staffs,
+    departments: state.departments,
+    value: state.value
+  }
+}
 
 class Main extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            staffs: STAFFS,
-            departments: DEPARTMENTS,
-            value: null,
-        
+            // staffs: STAFFS,
+            // departments: DEPARTMENTS,
+            // value: null,
+            staffs: props.staffs,
+            departments: props.departments,
+            value: props.value,
         }
     }
 
@@ -46,4 +57,4 @@ class Main extends React.Component{
 
 }
 
-export default Main;
+export default connect(mapStateToProps)(Main);
