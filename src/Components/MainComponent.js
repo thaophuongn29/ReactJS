@@ -9,7 +9,8 @@ import DepartmentStaffs from './DepartmentStaffs';
 import Loading from './LoadingComponent';
 import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import { connect} from 'react-redux';
-import { fetchStaffs, fetchDepartments, searchStaffs, fetchDepartmentsStaffs, postStaff, deleteStaff, patchStaff, fetchSalary} from '../redux/ActionCreators';
+import { fetchStaffs, fetchDepartments, searchStaffs, fetchDepartmentsStaffs, fetchSalary} from '../redux/ActionCreators';
+// import { postStaff, deleteStaff, patchStaff } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
@@ -24,11 +25,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     fetchStaffs: () => dispatch(fetchStaffs()),
     fetchDepartments: () => dispatch(fetchDepartments()),
-    postStaff: (staff) => dispatch(postStaff(staff)),
+    // postStaff: (staff) => dispatch(postStaff(staff)),
     searchStaffs: (staffs) => dispatch(searchStaffs(staffs)),
     fetchDepartmentsStaffs: (id) => dispatch(fetchDepartmentsStaffs(id)),
-    deleteStaff: (id) => dispatch(deleteStaff(id)),
-    patchStaff: (id, newField) => dispatch(patchStaff(id, newField)),
+    // deleteStaff: (id) => dispatch(deleteStaff(id)),
+    // patchStaff: (id, newField) => dispatch(patchStaff(id, newField)),
     fetchSalary: () => dispatch(fetchSalary())
 })
 

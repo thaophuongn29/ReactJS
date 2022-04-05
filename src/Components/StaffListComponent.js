@@ -26,7 +26,7 @@ function StaffList(props) {
             image: '/assets/images/alberto.png', 
             // id: props.staffs.length +1,
             }
-        props.postStaff(values)
+        // props.postStaff(values)
         setModalOpen(!modalOpen)
     }
 
@@ -38,7 +38,7 @@ function StaffList(props) {
         menu = props.staffs.map((staff) => {
             return(
                 <div key={staff.id} className='col-6 col-md-4 col-lg-2' style={{position: 'relative'}}>
-                    <Button style={{position: 'inherit', top: '10%',left: '90%', borderRadius: '5px'}} variant="danger" onClick={() => props.deleteStaff(staff.id)}>{'X'}</Button>
+                    {/* <Button style={{position: 'inherit', top: '10%',left: '90%', borderRadius: '5px'}} variant="danger" onClick={() => props.deleteStaff(staff.id)}>{'X'}</Button> */}
                     <Link to={`/staffs/${staff.id}`}>
                         <Button style={{width: "100%"}} variant="outline-dark" className='m-1'>
                             <Card.Img src={staff.image} />
