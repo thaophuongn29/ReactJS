@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import {Control, LocalForm} from 'react-redux-form';
 import { FadeTransform } from 'react-animation-components';
 
-function Staff(id, patchStaff, staff) {
+function Staff(props) {
     const [show, setShow] = useState(false);
     const [update, setUpdate] = useState({})
-    const [state, setState] = useState(staff.name)
+    const [state, setState] = useState(props.staff.name)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -19,7 +19,7 @@ function Staff(id, patchStaff, staff) {
     }
 
     const handleSubmit = (value) => {
-        patchStaff(staff.id, value)   
+        props.patchStaff(props.staff.id, value)   
     }
 
     const ModalForm = () => {
@@ -69,7 +69,7 @@ function Staff(id, patchStaff, staff) {
             <div className='row mt-4'>
                 <Breadcrumb>
                     <Breadcrumb.Item><Link className='text-info' to='/staffs'>Nhân viên</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item active>{staff.name}</Breadcrumb.Item>
+                    <Breadcrumb.Item active>{props.staff.name}</Breadcrumb.Item>
                 </Breadcrumb>
             </div>
             <div className='row mt-3 mb-5'>
@@ -77,19 +77,19 @@ function Staff(id, patchStaff, staff) {
                     <FadeTransform in duration={600} transformProps={{
                             exitTransform: 'translateX(-90%)'
                     }}>
-                        <img style={{width: "100%"}} src={staff.image}/>
+                        <img style={{width: "100%"}} src={props.staff.image}/>
                     </FadeTransform>
                 </div>
                 <div className='col-12 col-md-8 col-lg-9'>
                     <FadeTransform in duration={600} transformProps={{
                         exitTransform: 'translateX(90%)'
                     }}>
-                        <h4>{`Họ và tên: ${staff.name}`} <Button onClick={() => updateField('Họ và tên:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></h4>
-                        <p>{`Ngày sinh: ${dateFormat(staff.doB, "dd/mm/yyyy")}`} <Button onClick={() => updateField('Ngày sinh:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
-                        <p>{`Ngày vào công ty: ${dateFormat(staff.startDate, "dd/mm/yyyy")}`} <Button onClick={() => updateField('Ngày vào công ty:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp; Sửa</i></Button></p>
-                        <p>{`Phòng ban: ${staff.departmentId}`} <Button onClick={() => updateField('Phòng ban:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
-                        <p>{`Số ngày nghỉ còn lại: ${staff.annualLeave}`} <Button onClick={() => updateField('Số ngày nghỉ còn lại:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
-                        <p>{`Số ngày đã làm thêm: ${staff.overTime}`} <Button onClick={() => updateField('Số ngày đã làm thêm:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
+                        <h4>{`Họ và tên: ${props.staff.name}`} <Button onClick={() => updateField('Họ và tên:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></h4>
+                        <p>{`Ngày sinh: ${dateFormat(props.staff.doB, "dd/mm/yyyy")}`} <Button onClick={() => updateField('Ngày sinh:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
+                        <p>{`Ngày vào công ty: ${dateFormat(props.staff.startDate, "dd/mm/yyyy")}`} <Button onClick={() => updateField('Ngày vào công ty:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp; Sửa</i></Button></p>
+                        <p>{`Phòng ban: ${props.staff.departmentId}`} <Button onClick={() => updateField('Phòng ban:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
+                        <p>{`Số ngày nghỉ còn lại: ${props.staff.annualLeave}`} <Button onClick={() => updateField('Số ngày nghỉ còn lại:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
+                        <p>{`Số ngày đã làm thêm: ${props.staff.overTime}`} <Button onClick={() => updateField('Số ngày đã làm thêm:')} variant="outline-info" style={{border: 'none'}}><i className="fa fa-edit">&nbsp;Sửa</i></Button></p>
                     </FadeTransform>
                 </div>
             </div>

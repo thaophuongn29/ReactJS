@@ -3,10 +3,10 @@ import { Breadcrumb, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Salary(props) {
-    const [state, setState] = useState(props.staffs.map(staff => {
-            return {...staff, sum: parseInt(staff.salaryScale * 3000000 + staff.overTime*200000, 10)}}))
+    const [state, setState] = useState(props.salary.map(staff => {
+            return {...staff, sum: staff.salary}}))
     let newState = []
-    
+    // sum: parseInt(staff.salaryScale * 3000000 + staff.overTime*200000, 10)
     function Sort (num) {
         if (num === 1) {
             newState = [...state]
@@ -51,9 +51,9 @@ function Salary(props) {
                     <div className='col-12 col-md-6'>
                         <div className='float-end'>
                         <span className=''>Sắp xếp lương:</span>
-                        <Button id="1" className='' variant="warning" onClick={() => Sort(1)}><i class="fa fa-sort-up"></i></Button>
-                        <Button id="2" className='' variant="danger" onClick={() => Sort(2)}><i class="fa fa-sort-down"></i></Button> 
-                        <Button id="3" className='' variant="info" onClick={() => Sort(3)}><i class="fa fa-sort"></i></Button>
+                        <Button id="1" className='' variant="warning" onClick={() => Sort(1)}><i className="fa fa-sort-up"></i></Button>
+                        <Button id="2" className='' variant="danger" onClick={() => Sort(2)}><i className="fa fa-sort-down"></i></Button> 
+                        <Button id="3" className='' variant="info" onClick={() => Sort(3)}><i className="fa fa-sort"></i></Button>
                         </div>
                     </div>
             </div>
