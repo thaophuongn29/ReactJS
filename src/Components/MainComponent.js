@@ -3,14 +3,14 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import StaffList from './StaffListComponent';
 import Staff from './StaffComponents';
-import Department from './Departments';
+import Department from "./Departments";
 import Salary from './SalaryComponent';
 import DepartmentStaffs from './DepartmentStaffs';
 import Loading from './LoadingComponent';
 import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { fetchStaffs, fetchDepartments, searchStaffs, fetchDepartmentsStaffs, fetchSalary} from '../redux/ActionCreators';
-// import { postStaff, deleteStaff, patchStaff } from '../redux/ActionCreators';
+import { postStaff, deleteStaff, patchStaff } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
@@ -25,22 +25,24 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     fetchStaffs: () => dispatch(fetchStaffs()),
     fetchDepartments: () => dispatch(fetchDepartments()),
-    // postStaff: (staff) => dispatch(postStaff(staff)),
-    searchStaffs: (staffs) => dispatch(searchStaffs(staffs)),
     fetchDepartmentsStaffs: (id) => dispatch(fetchDepartmentsStaffs(id)),
-    // deleteStaff: (id) => dispatch(deleteStaff(id)),
-    // patchStaff: (id, newField) => dispatch(patchStaff(id, newField)),
-    fetchSalary: () => dispatch(fetchSalary())
+    fetchSalary: () => dispatch(fetchSalary()),
+    searchStaffs: (staffs) => dispatch(searchStaffs(staffs)),
+    postStaff: (staff) => dispatch(postStaff(staff)),
+    deleteStaff: (id) => dispatch(deleteStaff(id)),
+    patchStaff: (id, newField) => dispatch(patchStaff(id, newField)),
 })
 
 class Main extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-        }      
+        }   
+        console.log('contructor')   
     }
     
     componentDidMount () {
+        console.log('did Mount')
         this.props.fetchStaffs();
         this.props.fetchDepartments();
         this.props.fetchDepartmentsStaffs('Dept01');
@@ -48,7 +50,7 @@ class Main extends React.Component{
     }
     
     render() {
-
+        console.log('render')
         const StaffInfo = () => {
             const {id} = useParams();
             const staff=this.props.staffs.staffs.find((staff) => staff.id === Number(id))

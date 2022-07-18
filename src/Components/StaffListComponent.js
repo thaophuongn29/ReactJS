@@ -7,14 +7,9 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
-var saveStaffs = []
-
-fetch('https://rjs101xbackend.herokuapp.com/staffs')
-.then(response => response.json())
-.then(staffs => saveStaffs = staffs)
-
 function StaffList(props) {
     const [modalOpen, setModalOpen] = useState(false)
+    const [state, setState] = useState(props.staffs)
 
     const handleSubmit = (value) => {
         const salary = parseInt(value.salaryScale * 3000000 + value.overTime*200000, 10)
@@ -26,7 +21,7 @@ function StaffList(props) {
             image: '/assets/images/alberto.png', 
             // id: props.staffs.length +1,
             }
-        // props.postStaff(values)
+        props.postStaff(values)
         setModalOpen(!modalOpen)
     }
 
@@ -35,10 +30,10 @@ function StaffList(props) {
         menu = <h4>{props.errMess}</h4>
     }
     else {
-        menu = props.staffs.map((staff) => {
+        menu = state.map((staff) => {
             return(
                 <div key={staff.id} className='col-6 col-md-4 col-lg-2' style={{position: 'relative'}}>
-                    {/* <Button style={{position: 'inherit', top: '10%',left: '90%', borderRadius: '5px'}} variant="danger" onClick={() => props.deleteStaff(staff.id)}>{'X'}</Button> */}
+                    <Button style={{position: 'inherit', top: '10%',left: '90%', borderRadius: '5px'}} variant="danger" onClick={() => props.deleteStaff(staff.id)}>{'X'}</Button>
                     <Link to={`/staffs/${staff.id}`}>
                         <Button style={{width: "100%"}} variant="outline-dark" className='m-1'>
                             <Card.Img src={staff.image} />
@@ -72,12 +67,14 @@ function StaffList(props) {
                     <Button variant="outline-info" onClick={() => {
                         const value = document.getElementById('input').value;
                         const staffs = []
-                        saveStaffs.map((staff) => {
+
+                        props.staffs.forEach(staff => {
                             if (staff.name.toLowerCase().includes(value.toLowerCase())) {
                                 staffs.push(staff)
-                            }  
+                            } 
                         })
-                        props.searchStaffs(staffs)
+                        setState(staffs)
+
                         document.getElementById('input').value=''}}>Tìm</Button>
                 </Form>
             </div>

@@ -12,107 +12,107 @@ export const staffFailed = (errmess) => ({
 
 // POST
 
-// export const postStaff = (staff) => (dispatch) => {
-//     const newStaff = staff;
+export const postStaff = (staff) => (dispatch) => {
+    const newStaff = staff;
 
-//     return fetch('https://rjs101xbackend.herokuapp.com/staffs', {
-//         method: 'POST',
-//         body: JSON.stringify(newStaff),
-//         headers: {
-//           "Content-Type": "application/json"
-//         },
-//         credentials: "same-origin"
-//     })
-//     .then(response => {
-//         if(response.ok) {
-//             return response;
-//         } else {
-//             var error = new Error('Error ' + response.status + ': ' + response.statusText)
-//             error.response = response;
-//             throw error
-//         }
-//     },
-//     error => {
-//         var errMess = new Error(error.message);
-//         throw errMess
-//     })
-//     .then(response => response.json())
-//     .then(staffs => dispatch(addStaff(staffs)))
-//     .catch(error => dispatch(staffFailed(error.message)))
-// }
+    return fetch('https://rjs101xbackend.herokuapp.com/staffs', {
+        method: 'POST',
+        body: JSON.stringify(newStaff),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if(response.ok) {
+            return response;
+        } else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response;
+            throw error
+        }
+    },
+    error => {
+        var errMess = new Error(error.message);
+        throw errMess
+    })
+    .then(response => response.json())
+    .then(staffs => dispatch(addStaff(staffs)))
+    .catch(error => dispatch(staffFailed(error.message)))
+}
 
 // PATCH
 
-// export const patchStaff = (id, newField) => (dispatch) => {
+export const patchStaff = (id, newField) => (dispatch) => {
 
-//     return fetch('https://rjs101xbackend.herokuapp.com/staffs/' + id, {
-//         method: "PATCH",
-//         body: JSON.stringify(newField),
-//         headers: {
-//             "Content-type": "application/json",
-//         },
-//     })
-//     .then(response => {
-//         if(response.ok) {
-//             return response;
-//         } else {
-//             var error = new Error('Error ' + response.status + ': ' + response.statusText)
-//             error.response = response;
-//             throw error
-//         }
-//     },
-//     error => {
-//         var errMess = new Error(error.message)
-//         throw errMess
-//     })
-//     .then(response => response.json())
-//     .then(staffs => dispatch(updateStaff(staffs)))
-//     .catch(error => dispatch(updateStaffFailed(error.message)))
-// }
+    return fetch('https://rjs101xbackend.herokuapp.com/staffs/' + id, {
+        method: "PATCH",
+        body: JSON.stringify(newField),
+        headers: {
+            "Content-type": "application/json",
+        },
+    })
+    .then(response => {
+        if(response.ok) {
+            return response;
+        } else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response;
+            throw error
+        }
+    },
+    error => {
+        var errMess = new Error(error.message)
+        throw errMess
+    })
+    .then(response => response.json())
+    .then(staffs => dispatch(updateStaff(staffs)))
+    .catch(error => dispatch(updateStaffFailed(error.message)))
+}
 
-// export const updateStaff = (staffs) => ({
-//     type: ActionTypes.UPDATE_STAFF,
-//     payload: staffs
-// })
+export const updateStaff = (staffs) => ({
+    type: ActionTypes.UPDATE_STAFF,
+    payload: staffs
+})
 
-// export const updateStaffFailed = (errMess) => ({
-//     type: ActionTypes.UPDATE_STAFF_FAILED,
-//     payload: errMess
-// })
+export const updateStaffFailed = (errMess) => ({
+    type: ActionTypes.UPDATE_STAFF_FAILED,
+    payload: errMess
+})
 
 // DELETE
 
-// export const deleteStaff = (id) => (dispatch) => {
-//     return fetch('https://rjs101xbackend.herokuapp.com/staffs/' + id, {
-//         method: "DELETE"
-//     })
-//     .then(response => {
-//         if (response.ok) {
-//             return response
-//         } else {
-//             var error = new Error('Error ' + response.status + ': ' + response.statusText)
-//             error.response = response;
-//             throw error
-//         }
-//     },
-//     error => {
-//         var errMess = new Error(error.message)
-//         throw errMess
-//     })
-//     .then(response => response.json())
-//     .then(staffs => dispatch(deletedStaff(staffs)))
-//     .catch(error => dispatch(deleteFailed(error.message)))
-// }
+export const deleteStaff = (id) => (dispatch) => {
+    return fetch('https://rjs101xbackend.herokuapp.com/staffs/' + id, {
+        method: "DELETE"
+    })
+    .then(response => {
+        if (response.ok) {
+            return response
+        } else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response;
+            throw error
+        }
+    },
+    error => {
+        var errMess = new Error(error.message)
+        throw errMess
+    })
+    .then(response => response.json())
+    .then(staffs => dispatch(deletedStaff(staffs)))
+    .catch(error => dispatch(deleteFailed(error.message)))
+}
 
-// export const deletedStaff = (staffs) => ({
-//     type: ActionTypes.DELETE_STAFF,
-//     payload: staffs
-// })
+export const deletedStaff = (staffs) => ({
+    type: ActionTypes.DELETE_STAFF,
+    payload: staffs
+})
 
-// export const deleteFailed = (errMess) => ({
-//     type: ActionTypes.DELETE_FAILED_STAFF,
-//     payload: errMess
-// })
+export const deleteFailed = (errMess) => ({
+    type: ActionTypes.DELETE_FAILED_STAFF,
+    payload: errMess
+})
 
 export const searchStaffs = (staffs) => ({
     type: ActionTypes.SEARCH_STAFFS,
